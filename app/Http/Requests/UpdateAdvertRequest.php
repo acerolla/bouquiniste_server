@@ -23,7 +23,7 @@ class UpdateAdvertRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:255',
+            'title' => 'string|max:255',
             'price' => 'numeric',
             'image' => 'image'
         ];
