@@ -48,12 +48,12 @@ class AdvertsTransformer extends TransformerAbstract
     /**
      * @param Advert $advert
      *
-     * @return bool|Primitive
+     * @return \League\Fractal\Resource\NullResource|Primitive
      */
     public function includeCategory(Advert $advert)
     {
         if (!$advert->category) {
-            return false;
+            return $this->null();
         }
 
         return $this->primitive($advert->category, new CategoryTransformer);
@@ -62,12 +62,12 @@ class AdvertsTransformer extends TransformerAbstract
     /**
      * @param Advert $advert
      *
-     * @return bool|Primitive
+     * @return \League\Fractal\Resource\NullResource|Primitive
      */
     public function includeUser(Advert $advert)
     {
         if (!$advert->user) {
-            return false;
+            return $this->null();
         }
 
         return $this->primitive($advert->user, new UserTransformer);
