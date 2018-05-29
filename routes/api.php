@@ -10,6 +10,7 @@ Route::group(['prefix' => 'user', 'as' => 'user.'], function() {
     Route::get('/', 'UserController@user')->name('info');
     Route::put('/', 'UserController@update')->name('update');
     Route::get('/favorites', 'UserController@favorites')->name('favorites');
+    Route::get('/adverts', 'UserController@adverts')->name('myAdverts');
     Route::get('/{id}/adverts', 'UserController@adverts')->name('adverts');
 });
 

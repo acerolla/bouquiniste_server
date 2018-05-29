@@ -39,7 +39,7 @@ class AdvertsController extends ApiController
      */
     public function index(): Fractal
     {
-        $adverts = Advert::active()->paginate(10);
+        $adverts = Advert::active()->orderByDesc('id')->paginate(10);
 
         return $this->fractal->collection($adverts, new AdvertsTransformer)
                              ->paginateWith(new IlluminatePaginatorAdapter($adverts));

@@ -61,7 +61,7 @@ class CategoriesController extends ApiController
             });
         }
 
-        $adverts = Advert::whereIn('category_id', $categoryIds)->active()->paginate(10);
+        $adverts = Advert::whereIn('category_id', $categoryIds)->active()->orderByDesc('id')->paginate(10);
 
         return $this->fractal->collection($adverts, new AdvertsTransformer)
                              ->paginateWith(new IlluminatePaginatorAdapter($adverts));

@@ -51,7 +51,21 @@ class UserController extends ApiController
         /** @var User $user */
         $user = auth()->user();
 
-        $adverts = $user->favorites()->paginate(10);
+        $adverts = $user->favorites()->orderByDesc('id')->paginate(10);
+
+        return $this->fractal->collection($adverts, new AdvertsTransformer)
+            ->paginateWith(new IlluminatePaginatorAdapter($adverts));
+    }
+
+    /**
+     * @return Fractal
+     */
+    public function myAdverts(): Fractal
+    {
+        /** @var User $user */
+        $user = auth()->user();
+
+        $adverts = $user->adverts()->orderByDesc('id')->paginate(10);
 
         return $this->fractal->collection($adverts, new AdvertsTransformer)
             ->paginateWith(new IlluminatePaginatorAdapter($adverts));
@@ -65,7 +79,7 @@ class UserController extends ApiController
         /** @var User $user */
         $user = User::findOrFail($id);
 
-        $adverts = $user->adverts()->active()->paginate(10);
+        $adverts = $user->adverts()->orderByDesc('id')->active()->paginate(10);
 
         return $this->fractal->collection($adverts, new AdvertsTransformer)
             ->paginateWith(new IlluminatePaginatorAdapter($adverts));
