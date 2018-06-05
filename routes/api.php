@@ -25,6 +25,7 @@ Route::group(['prefix' => 'advert', 'as' => 'advert.'], function() {
 
     Route::post('/', 'AdvertsController@create')->name('create');
     Route::put('/{id}', 'AdvertsController@update')->name('update');
+    Route::post('/{id}', 'AdvertsController@update');
 
     Route::put('/{id}/favorite', 'AdvertsController@favorite')->name('favorite');
     Route::put('/{id}/unfavorite', 'AdvertsController@unfavorite')->name('unfavorite');

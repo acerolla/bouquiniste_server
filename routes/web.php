@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('adverts.create');
 });
+
+Route::get('/edit', function () {
+    return view('adverts.update');
+});

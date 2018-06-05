@@ -57,7 +57,11 @@ class Handler extends ExceptionHandler
         }
 
         if ($exception instanceof ValidationException) {
-            return response()->error($exception);
+            return response()->json([
+                'error'       => $exception->getMessage() ?: 'Something went wrong',
+                'errors'      => $exception->errors(),
+                'status_code' => $status,
+            ], $status);
         }
 
         if ($exception instanceof UnauthorizedException) {
