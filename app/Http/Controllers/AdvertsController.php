@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Entities\Advert;
 use App\Entities\User;
+use App\Filters\AdvertsFilter;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Requests\CreateAdvertRequest;
 use App\Http\Requests\UpdateAdvertRequest;
@@ -35,11 +36,13 @@ class AdvertsController extends ApiController
     }
 
     /**
+     * @param AdvertsFilter $filters
+     *
      * @return Fractal
      */
-    public function index(): Fractal
+    public function index(AdvertsFilter $filters): Fractal
     {
-        $adverts = Advert::active()->orderByDesc('id')->paginate(10);
+        $adverts = Advert::active()->filterBy($filters)->orderByDesc('id')->paginate(10);
 
         return $this->fractal->collection($adverts, new AdvertsTransformer)
                              ->paginateWith(new IlluminatePaginatorAdapter($adverts));

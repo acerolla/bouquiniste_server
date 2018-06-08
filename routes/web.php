@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('/edit', function () {
     return view('adverts.update');
 });
+
+Route::get('/privacy', function () {
+    return view('pages.privacy');
+});

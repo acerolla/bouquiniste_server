@@ -5,6 +5,7 @@ namespace App\Entities;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Cerbero\QueryFilters\FiltersRecords;
 
 /**
  * Class Advert
@@ -12,6 +13,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Advert extends Model
 {
+    use FiltersRecords;
+
     /**
      * @var string
      */
